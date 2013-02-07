@@ -1,0 +1,32 @@
+{
+  "name": "bower-javascript-brunch",
+  "version": "0.0.1",
+  "description": "Adds Bower support to Brunch for javascript files",
+  "author": {
+    "name": "Gulin Serge",
+    "url": "http://gulin.pro/"
+  },
+  "homepage": "https://github.com/GulinSS/bower-javascript-brunch.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:GulinSS/bower-javascript-brunch.git"
+  },
+  "main": "./lib/index",
+  "scripts": {
+    "prepublish": "coffee -o lib/ src/",
+    "postinstall": "node setup.js postinstall"
+  },
+  "engines": {
+    "node": "~0.6.10 || 0.8 || 0.9"
+  },
+  "dependencies": {
+    "coffee-script": "1.3.3",
+    "underscore": "~1.4.4",
+    "q": "~0.8.12",
+    "bower": "~0.7.0"
+  },
+  "devDependencies": {
+    "mocha": "1.2.2",
+    "chai": "1.1.0"
+  }
+}
