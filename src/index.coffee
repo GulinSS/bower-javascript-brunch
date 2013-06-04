@@ -49,14 +49,17 @@ module.exports = class BowerJSIncluder
       pathsDefered.resolve paths
 
   compile: (data, path, callback) ->
-    @pathsPromise.then (paths) ->
-      if path.indexOf('app') is 0
-        callback null, data      
+    try
+      @pathsPromise.then (paths) ->
+        if path.indexOf('app') is 0
+          callback null, data
 
-      # скобки нужны
-      if paths.indexOf(path) >= 0
-        callback null, data
-      else callback null, ""
+        # скобки нужны
+        if paths.indexOf(path) >= 0
+          callback null, data
+        else callback null, ""
+    catch err
+      callback err, ""
 
   onCompile: (compiled) ->
     #console.log compiled
