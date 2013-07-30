@@ -54,12 +54,13 @@ module.exports = class BowerJSIncluder
   compile: (data, path, callback) ->
     @pathsPromise.then (paths) ->
       if path.indexOf('app') is 0
-        callback null, data      
-
-      # скобки нужны
-      if paths.indexOf(path) >= 0
         callback null, data
-      else callback null, ""
+
+      for absPath in paths
+        if absPath[-path.length..] == path
+          callback null, data
+          return
+      callback null, null
 
   onCompile: (compiled) ->
     #console.log compiled
