@@ -45,7 +45,10 @@ module.exports = class BowerJSIncluder
       mergedPathDefered.resolve resolveResult
 
     @pathsPromise = mergedPathDefered.promise
-    bowerList({paths: true}).on 'data', (paths) ->
+    bowerList({paths: true}).on 'end', (paths) ->
+      # Paths listed in single string splitted by comma
+      _.each paths, (v, k) ->
+        paths[k] = v.split /,/g
       pathsDefered.resolve paths
 
   compile: (data, path, callback) ->
